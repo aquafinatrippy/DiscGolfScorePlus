@@ -1,29 +1,59 @@
 import {Avatar, Button} from '@rneui/themed';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AddPlayer from './AddPlayer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface Props {}
 
+type Player = {
+  id: string;
+  name: string;
+};
+
 const Players: React.FC<Props> = () => {
-  const totalPlayers = [1, 2, 3, 4, 5];
+  const [players, setPlayers] = useState<Player[] | null>(null);
+  const getPlayers = async () => {
+    try {
+      const value = await AsyncStorage.getItem('users');
+      const parsedValue: Player[] | null = value ? JSON.parse(value) : null;
+
+      setPlayers(parsedValue);
+      console.log(parsedValue, 'val');
+      console.log(value, 'val');
+      return value;
+    } catch (error) {
+      console.log('Error retrieving data:', error);
+    }
+  };
+  useEffect(() => {
+    getPlayers();
+    console.log(players, 'useEFfect');
+  }, []);
+
+  const totalPlayers = [0, 1, 2, 3, 4];
   return (
     <View style={styles.container}>
       <Text>Players</Text>
       <View style={styles.btn}>
         <AddPlayer />
       </View>
+      <Button onPress={() => console.log(getPlayers())}>get data</Button>
 
       <View style={styles.playerPlaceholders}>
-        {totalPlayers.map(i => {
+        {totalPlayers.map(index => {
+          const player = players && players[index];
+          const playerName = player ? player.name : 'Not Set';
+
           return (
-            <View key={i} style={styles.player}>
+            <View key={index} style={styles.player}>
               <Avatar
                 size={40}
                 rounded
-                title="Fc"
-                containerStyle={{backgroundColor: '#3d4db7'}}
+                title="X"
+                containerStyle={{backgroundColor: player ? 'blue' : 'red'}}
               />
+              <Text>{playerName}</Text>
             </View>
           );
         })}

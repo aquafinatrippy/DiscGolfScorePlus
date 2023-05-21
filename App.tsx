@@ -22,6 +22,9 @@ const theme = createTheme({
         borderRadius: 10,
         color: '#fff',
       },
+      buttonStyle: {
+        borderRadius: 10,
+      },
     },
   },
 });
