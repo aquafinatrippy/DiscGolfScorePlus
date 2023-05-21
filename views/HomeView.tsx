@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import SelectTrack from '../components/SelectTrack';
+import Players from '../components/Players';
 
 interface Props {
   navigation: any;
@@ -12,6 +13,7 @@ const HomeView: React.FC<Props> = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
+      <Players />
       <SelectTrack navigation={navigation}></SelectTrack>
     </View>
   );
