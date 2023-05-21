@@ -1,0 +1,100 @@
+{
+  "Männiku": [
+    {
+      "Number": "1.",
+      "Par": "Par 3",
+      "Pikkus": "53 m"
+    },
+    {
+      "Number": "2.",
+      "Par": "Par 3",
+      "Pikkus": "69 m",
+      "Info": "OB paremal karjäär. Kehtib tavaline OB reegel"
+    },
+    {
+      "Number": "3.",
+      "Par": "Par 3",
+      "Pikkus": "45 m"
+    },
+    {
+      "Number": "4.",
+      "Par": "Par 3",
+      "Pikkus": "63 m",
+      "Info": "OB vasakul tee ja korvi taga. Kehtib tavaline OB reegel."
+    },
+    {
+      "Number": "5.",
+      "Par": "Par 3",
+      "Pikkus": "76 m"
+    },
+    {
+      "Number": "6.",
+      "Par": "Par 4",
+      "Pikkus": "122 m"
+    },
+    {
+      "Number": "7.",
+      "Par": "Par 3",
+      "Pikkus": "61 m"
+    },
+    {
+      "Number": "8.",
+      "Par": "Par 3",
+      "Pikkus": "108 m",
+      "Info": "OB paremal karjäär. Kehtib tavaline OB reegel."
+    },
+    {
+      "Number": "9.",
+      "Par": "Par 3",
+      "Pikkus": "105 m",
+      "Info": "OB karjäär paremal. Kehtib tavaline OB reegel."
+    },
+    {
+      "Number": "10.",
+      "Par": "Par 3",
+      "Pikkus": "67 m"
+    },
+    {
+      "Number": "11.",
+      "Par": "Par 3",
+      "Pikkus": "77 m"
+    },
+    {
+      "Number": "12.",
+      "Par": "Par 4",
+      "Pikkus": "121 m"
+    },
+    {
+      "Number": "13.",
+      "Par": "Par 3",
+      "Pikkus": "61 m"
+    },
+    {
+      "Number": "14.",
+      "Par": "Par 3",
+      "Pikkus": "78 m"
+    },
+    {
+      "Number": "15.",
+      "Par": "Par 3",
+      "Pikkus": "73 m"
+    },
+    {
+      "Number": "16.",
+      "Par": "Par 4",
+      "Pikkus": "80 m",
+      "Info": "Rajal kohustuslikult läbitav mandopuu. Eksimise korral lisandub tulemusele +1 ka liigud Dropzone'i."
+    },
+    {
+      "Number": "17.",
+      "Par": "Par 3",
+      "Pikkus": "77 m",
+      "Info": "Rajal on kohustuslikult läbitav mandopuu. Eksimise korral lisandub tulemusele +1 ja liigud Dropzone'i. Korvi taga OB. Kehtib tavaline OB reegel."
+    },
+    {
+      "Number": "18.",
+      "Par": "Par 3",
+      "Pikkus": "69 m"
+    }
+  ]
+}

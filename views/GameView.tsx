@@ -1,18 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-elements';
 
 interface Props {}
 
-const Start: React.FC<Props> = () => {
+const GameView: React.FC<Props> = () => {
   const handlePress = () => {
     console.log('Button pressed');
   };
   return (
     <View style={styles.container}>
-      <Text> test22</Text>
-      <Button title="Press me" onPress={handlePress} />
-      <Text style={styles.text}>Hello!</Text>
+      <Text>This is game view</Text>
     </View>
   );
 };
@@ -29,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Start;
+export default GameView;

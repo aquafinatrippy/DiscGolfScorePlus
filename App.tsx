@@ -5,66 +5,37 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Start from './components/Start';
-import {Game} from './views/Game';
+import React from 'react';
+import {StyleSheet, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home} from './views/Home';
+import HomeView from './views/HomeView';
+import GameView from './views/GameView';
+import {ThemeProvider, createTheme} from '@rneui/themed';
 
 const Stack = createNativeStackNavigator();
 
+const theme = createTheme({
+  components: {
+    Button: {
+      titleStyle: {
+        borderRadius: 10,
+        color: '#fff',
+      },
+    },
+  },
+});
+
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  const [test, setTest] = useState(false);
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Home} />
-          </Stack.Navigator>
-        </NavigationContainer>
-        <Header />
-
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Start />
-          <Game />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeView} />
+          <Stack.Screen name="Game" component={GameView} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 
