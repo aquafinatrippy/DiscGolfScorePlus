@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import PlayerScore from '../components/PlayerScore';
+import NoTrackGameStats from '../components/NoTrackGameStats';
 
 interface Props {}
 
@@ -9,7 +11,8 @@ const GameView: React.FC<Props> = () => {
   };
   return (
     <View style={styles.container}>
-      <Text>This is game view</Text>
+      <NoTrackGameStats />
+      <PlayerScore />
     </View>
   );
 };

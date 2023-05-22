@@ -1,4 +1,4 @@
-import {Avatar, Button} from '@rneui/themed';
+import {Avatar, Button, ListItem} from '@rneui/themed';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AddPlayer from './AddPlayer';
@@ -30,7 +30,6 @@ const Players: React.FC<Props> = () => {
     getPlayers();
     console.log(players, 'useEFfect');
   }, []);
-
   const totalPlayers = [0, 1, 2, 3, 4];
   return (
     <View style={styles.container}>
@@ -46,15 +45,21 @@ const Players: React.FC<Props> = () => {
           const playerName = player ? player.name : 'Not Set';
 
           return (
-            <View key={index} style={styles.player}>
-              <Avatar
-                size={40}
-                rounded
-                title="X"
-                containerStyle={{backgroundColor: player ? 'blue' : 'red'}}
-              />
-              <Text>{playerName}</Text>
-            </View>
+            <ListItem containerStyle={styles.playerItem} bottomDivider>
+              <View style={{flexDirection: 'row'}}>
+                <Avatar
+                  size={40}
+                  rounded
+                  title={player ? player.name.slice(0, 2) : 'X'}
+                  containerStyle={{
+                    backgroundColor: player ? 'blue' : 'red',
+                    marginEnd: 10,
+                  }}
+                />
+                <Text>{playerName}</Text>
+              </View>
+              <Button title="Click" />
+            </ListItem>
           );
         })}
       </View>
@@ -65,6 +70,8 @@ const Players: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   player: {
     margin: 10,
+    flex: 1,
+    flexDirection: 'row',
   },
   container: {
     flex: 1,
@@ -77,10 +84,15 @@ const styles = StyleSheet.create({
   },
   playerPlaceholders: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
+    marginBottom: 10,
   },
   btn: {
     margin: 10,
+  },
+  playerItem: {
+    width: 300,
+    justifyContent: 'space-between',
   },
 });
 
