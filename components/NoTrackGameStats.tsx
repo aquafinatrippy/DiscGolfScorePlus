@@ -1,20 +1,25 @@
 import {Button} from '@rneui/themed';
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 interface Props {}
 
 const NoTrackGameStats: React.FC<Props> = () => {
-  const handlePress = () => {
-    console.log('Button pressed');
+  const [par, setPar] = useState(0);
+  const handlePress = (add = false) => {
+    if (add) {
+      setPar(par + 1);
+    } else {
+      setPar(par - 1);
+    }
   };
   return (
     <View>
       <Text>Par:</Text>
       <View style={styles.btnContainer}>
-        <Button title={'-'} />
-        <Text>0</Text>
-        <Button title={'+'} />
+        <Button title={'-'} onPress={() => handlePress(false)} />
+        <Text>{par}</Text>
+        <Button title={'+'} onPress={() => handlePress(true)} />
       </View>
     </View>
   );
