@@ -1,6 +1,7 @@
 import {Button, Card} from '@rneui/themed';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Btn from './common/Button';
 
 interface Props {}
 

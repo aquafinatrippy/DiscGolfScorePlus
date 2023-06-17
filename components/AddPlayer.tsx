@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {generateRandomString} from '../helpers/general';
+import Btn from './common/Button';
 
 interface Props {}
 
@@ -37,7 +38,6 @@ const AddPlayer: React.FC<Props> = () => {
 
   return (
     <View>
-      <Button onPress={openDialog}>Add Player +</Button>
       <Dialog isVisible={dialog} onBackdropPress={openDialog}>
         <Dialog.Title title="Add New Player" />
         <Text>Must have atleast 1 player to start the game</Text>
@@ -50,6 +50,7 @@ const AddPlayer: React.FC<Props> = () => {
           <Dialog.Button title="CLOSE" onPress={openDialog} />
         </Dialog.Actions>
       </Dialog>
+      <Btn text={'Add Player'} onClick={openDialog} />
     </View>
   );
 };

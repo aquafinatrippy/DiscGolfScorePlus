@@ -13,8 +13,8 @@ const HomeView: React.FC<Props> = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
-      <Players />
       <SelectTrack navigation={navigation}></SelectTrack>
+      <Players />
     </View>
   );
 };
@@ -22,7 +22,7 @@ const HomeView: React.FC<Props> = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   text: {

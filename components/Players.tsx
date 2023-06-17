@@ -34,9 +34,7 @@ const Players: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <Text>Players</Text>
-      <View style={styles.btn}>
-        <AddPlayer />
-      </View>
+
       <Button onPress={() => console.log(getPlayers())}>get data</Button>
 
       <View style={styles.playerPlaceholders}>
@@ -58,10 +56,13 @@ const Players: React.FC<Props> = () => {
                 />
                 <Text>{playerName}</Text>
               </View>
-              <Button title="Click" />
+              <Button title="Remove" />
             </ListItem>
           );
         })}
+        <View style={styles.btn}>
+          <AddPlayer />
+        </View>
       </View>
     </View>
   );
@@ -74,7 +75,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

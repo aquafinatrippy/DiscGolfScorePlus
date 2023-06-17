@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {BottomSheet, Button, ListItem} from '@rneui/themed';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import TrackData from '../data/GameRoads.json';
 
@@ -27,7 +27,7 @@ const SelectTrack: React.FunctionComponent<SelectTrackComponentProps> = ({
   ];
 
   return (
-    <SafeAreaProvider style={styles.container}>
+    <View style={styles.cont}>
       <Button
         size="lg"
         title="Select track"
@@ -42,25 +42,20 @@ const SelectTrack: React.FunctionComponent<SelectTrackComponentProps> = ({
       />
       <BottomSheet modalProps={{}} isVisible={isVisible}>
         {list.map((l, i) => (
-          <ListItem
-            key={i}
-            containerStyle={l.containerStyle}
-            onPress={l.onPress}>
+          <ListItem key={i} onPress={l.onPress}>
             <ListItem.Content>
-              <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
+              <ListItem.Title>{l.title}</ListItem.Title>
             </ListItem.Content>
           </ListItem>
         ))}
       </BottomSheet>
-    </SafeAreaProvider>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  cont: {
+    marginTop: 10,
   },
   button: {
     marginBottom: 10,
