@@ -1,18 +1,20 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import PlayerScore from '../components/PlayerScore';
-import NoTrackGameStats from '../components/NoTrackGameStats';
+import React, {FC, useContext} from 'react';
+import {View, StyleSheet} from 'react-native';
+import PlayerGameCard from '../components/common/PlayerGameCard';
+import {PlayersContext} from '../context/PlayersContext';
+import ParCounter from '../components/ParCounter';
 
 interface Props {}
 
-const GameView: React.FC<Props> = () => {
-  const handlePress = () => {
-    console.log('Button pressed');
-  };
+const GameView: FC<Props> = () => {
+  const {players} = useContext(PlayersContext);
+
   return (
     <View style={styles.container}>
-      <NoTrackGameStats />
-      <PlayerScore />
+      <ParCounter />
+      {players.map(({name, id}) => (
+        <PlayerGameCard name={name} key={id} score={0} />
+      ))}
     </View>
   );
 };
@@ -20,7 +22,7 @@ const GameView: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   text: {

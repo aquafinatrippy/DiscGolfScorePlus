@@ -2,32 +2,17 @@ import {Avatar, Button, ListItem} from '@rneui/themed';
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AddPlayer from './AddPlayer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PlayersContext} from '../context/PlayersContext';
 
 interface Props {}
 
 const Players: React.FC<Props> = () => {
-  // const removePlayer = async (index: number) => {
-  //   const updatedPlayers = [...players];
-  //   updatedPlayers.splice(index, 1);
-  //   // setPlayers(updatedPlayers);
-  //   try {
-  //     await AsyncStorage.setItem('users', JSON.stringify(updatedPlayers));
-  //     console.log('Player removed successfully');
-  //   } catch (error) {
-  //     console.log('Error removing player:', error);
-  //   }
-  // };
-
   const {players, removePlayer} = useContext(PlayersContext);
   console.log(removePlayer, players, 'from context');
 
   const totalPlayers = [0, 1, 2, 3, 4];
   return (
     <View style={styles.container}>
-      <Text>Players</Text>
-      {/* <Button onPress={() => console.log(getPlayers())}>get data</Button> */}
       <View style={styles.playerPlaceholders}>
         {totalPlayers.map(index => {
           const player = players && players[index];

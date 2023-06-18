@@ -11,6 +11,20 @@ const playersContextWrapper = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    const getPlayers = async () => {
+      try {
+        const value = await AsyncStorage.getItem('users');
+        const parsedValue: Player[] = value ? JSON.parse(value) : [];
+        setPlayers(parsedValue);
+      } catch (error) {
+        console.log('Error retrieving data:', error);
+      }
+    };
+
+    getPlayers();
+  }, []);
+
   const storeUser = async (name: string) => {
     try {
       const existingData = await AsyncStorage.getItem('users');
@@ -69,20 +83,6 @@ export const PlayersContext = React.createContext<Context>(
 
 export const PlayersContextProvider: FC = ({children}) => {
   const context = playersContextWrapper();
-
-  useEffect(() => {
-    const getPlayers = async () => {
-      try {
-        const value = await AsyncStorage.getItem('users');
-        const parsedValue: Player[] = value ? JSON.parse(value) : [];
-        context.players = parsedValue;
-      } catch (error) {
-        console.log('Error retrieving data:', error);
-      }
-    };
-
-    getPlayers();
-  }, []);
 
   return (
     <PlayersContext.Provider value={context}>

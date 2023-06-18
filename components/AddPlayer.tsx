@@ -28,7 +28,13 @@ const AddPlayer: React.FC<Props> = () => {
           placeholder="Name of the player"
         />
         <Dialog.Actions>
-          <Dialog.Button title="ADD" onPress={() => storeUser(name)} />
+          <Dialog.Button
+            title="ADD"
+            onPress={() => {
+              storeUser(name);
+              setDialog(false);
+            }}
+          />
           <Dialog.Button title="CLOSE" onPress={openDialog} />
         </Dialog.Actions>
       </Dialog>
