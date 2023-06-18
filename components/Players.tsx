@@ -1,42 +1,33 @@
 import {Avatar, Button, ListItem} from '@rneui/themed';
-import React, {useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AddPlayer from './AddPlayer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {PlayersContext} from '../context/PlayersContext';
 
 interface Props {}
 
-type Player = {
-  id: string;
-  name: string;
-};
-
 const Players: React.FC<Props> = () => {
-  const [players, setPlayers] = useState<Player[] | null>(null);
-  const getPlayers = async () => {
-    try {
-      const value = await AsyncStorage.getItem('users');
-      const parsedValue: Player[] | null = value ? JSON.parse(value) : null;
+  // const removePlayer = async (index: number) => {
+  //   const updatedPlayers = [...players];
+  //   updatedPlayers.splice(index, 1);
+  //   // setPlayers(updatedPlayers);
+  //   try {
+  //     await AsyncStorage.setItem('users', JSON.stringify(updatedPlayers));
+  //     console.log('Player removed successfully');
+  //   } catch (error) {
+  //     console.log('Error removing player:', error);
+  //   }
+  // };
 
-      setPlayers(parsedValue);
-      console.log(parsedValue, 'val');
-      console.log(value, 'val');
-      return value;
-    } catch (error) {
-      console.log('Error retrieving data:', error);
-    }
-  };
-  useEffect(() => {
-    getPlayers();
-    console.log(players, 'useEFfect');
-  }, []);
+  const {players, removePlayer} = useContext(PlayersContext);
+  console.log(removePlayer, players, 'from context');
+
   const totalPlayers = [0, 1, 2, 3, 4];
   return (
     <View style={styles.container}>
       <Text>Players</Text>
-
-      <Button onPress={() => console.log(getPlayers())}>get data</Button>
-
+      {/* <Button onPress={() => console.log(getPlayers())}>get data</Button> */}
       <View style={styles.playerPlaceholders}>
         {totalPlayers.map(index => {
           const player = players && players[index];
@@ -56,7 +47,11 @@ const Players: React.FC<Props> = () => {
                 />
                 <Text>{playerName}</Text>
               </View>
-              <Button title="Remove" />
+              <Button
+                onPress={() => removePlayer(index)}
+                title="Remove"
+                disabled={player ? false : true}
+              />
             </ListItem>
           );
         })}
