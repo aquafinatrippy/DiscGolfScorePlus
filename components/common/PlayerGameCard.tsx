@@ -1,16 +1,16 @@
 import {Button, Card} from '@rneui/themed';
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {PlayersContext} from '../../context/PlayersContext';
 
 interface Props {
-    name: string;
-    score: number
+  name: string;
+  score: number;
+  index: number;
 }
 
-const PlayerGameCard: React.FC<Props> = ({name, score}) => {
-  const handlePress = () => {
-    console.log('Button pressed');
-  };
+const PlayerGameCard: React.FC<Props> = ({name, score, index}) => {
+  const {changeScore} = useContext(PlayersContext);
 
   return (
     <View style={styles.scoreView}>
@@ -21,8 +21,8 @@ const PlayerGameCard: React.FC<Props> = ({name, score}) => {
             <Text>{score}</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Button title={'+'} onPress={handlePress} />
-            <Button title={'-'} onPress={handlePress} />
+            <Button title={'-'} onPress={() => changeScore(index, false)} />
+            <Button title={'+'} onPress={() => changeScore(index)} />
           </View>
         </View>
       </Card>

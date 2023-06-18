@@ -12,8 +12,8 @@ const GameView: FC<Props> = () => {
   return (
     <View style={styles.container}>
       <ParCounter />
-      {players.map(({name, id}) => (
-        <PlayerGameCard name={name} key={id} score={0} />
+      {players.map(({name, id, score}, index) => (
+        <PlayerGameCard name={name} key={id} score={score} index={index} />
       ))}
     </View>
   );
