@@ -9,9 +9,13 @@ interface Props {}
 const AddPlayer: React.FC<Props> = () => {
   const [dialog, setDialog] = useState(false);
   const [name, setName] = useState('');
-  const {storeUser} = useContext(PlayersContext);
+  const {storeUser, addMessage, players} = useContext(PlayersContext);
   const openDialog = () => {
-    setDialog(!dialog);
+    if (players.length >= 5) {
+      addMessage('Player limit reached');
+    } else {
+      setDialog(!dialog);
+    }
   };
 
   const handleNameChange = (text: string) => {

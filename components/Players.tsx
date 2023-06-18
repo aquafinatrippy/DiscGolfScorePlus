@@ -8,7 +8,6 @@ interface Props {}
 
 const Players: React.FC<Props> = () => {
   const {players, removePlayer} = useContext(PlayersContext);
-  console.log(removePlayer, players, 'from context');
 
   const totalPlayers = [0, 1, 2, 3, 4];
   return (

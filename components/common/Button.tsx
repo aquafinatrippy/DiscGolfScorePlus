@@ -2,13 +2,17 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 interface Props {
-  text: String;
+  text: string;
   onClick: Function;
+  disabled?: boolean;
 }
 
-const Btn: React.FC<Props> = ({text, onClick}) => {
+const Btn: React.FC<Props> = ({text, onClick, disabled = false}) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={() => onClick()}>
+    <TouchableOpacity
+      style={styles.button}
+      disabled={disabled}
+      onPress={() => onClick()}>
       <View style={styles.span}>
         <Text style={styles.text}>{text}</Text>
       </View>

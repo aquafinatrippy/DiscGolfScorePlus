@@ -16,7 +16,6 @@ const ParCounter: React.FC<Props> = () => {
 
   return (
     <View>
-      <Text>Par:</Text>
       <View style={styles.btnContainer}>
         <Button
           title="-"
@@ -27,7 +26,7 @@ const ParCounter: React.FC<Props> = () => {
         <Button
           title="+"
           buttonStyle={styles.button}
-          onPress={() => handlePress()}
+          onPress={() => handlePress(true)}
         />
       </View>
     </View>
@@ -42,6 +41,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 5,
+    width: 50,
+    height: 50,
   },
 });
 

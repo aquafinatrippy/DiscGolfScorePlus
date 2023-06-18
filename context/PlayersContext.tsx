@@ -11,6 +11,7 @@ type Player = {
 
 const playersContextWrapper = () => {
   const [players, setPlayers] = useState<Player[]>([]);
+  const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const getPlayers = async () => {
@@ -19,7 +20,7 @@ const playersContextWrapper = () => {
         const parsedValue: Player[] = value ? JSON.parse(value) : [];
         setPlayers(parsedValue);
       } catch (error) {
-        console.log('Error retrieving data:', error);
+        setMessage('Error retrieving data:');
       }
     };
 
@@ -39,9 +40,9 @@ const playersContextWrapper = () => {
         await AsyncStorage.setItem('users', JSON.stringify(newUser));
         setPlayers(newUser);
       }
-      console.log('Data stored successfully');
+      setMessage('User added');
     } catch (error) {
-      console.log('Error storing data:', error);
+      setMessage(`Error storing data: ${error}`);
     }
   };
 
@@ -52,9 +53,9 @@ const playersContextWrapper = () => {
     try {
       await AsyncStorage.setItem('users', JSON.stringify(updatedPlayers));
       setPlayers(updatedPlayers);
-      console.log('Player removed successfully');
+      setMessage('Player removed successfully');
     } catch (error) {
-      console.log('Error removing player:', error);
+      setMessage('Error removing player:');
     }
   };
 
@@ -68,11 +69,17 @@ const playersContextWrapper = () => {
     setPlayers(updatedPlayers);
   };
 
+  const addMessage = (msg: string) => {
+    setMessage(msg);
+  };
+
   return {
     players,
     removePlayer,
     changeScore,
     storeUser,
+    message,
+    addMessage,
   };
 };
 
@@ -88,11 +95,22 @@ interface ProviderProps {
 
 export const PlayersContextProvider: FC<ProviderProps> = ({children}) => {
   const context = playersContextWrapper();
+  const [snackTrigger, setSnackTrigger] = useState(false);
+
+  useEffect(() => {
+    if (context.message) {
+      setSnackTrigger(true);
+    }
+    setTimeout(() => {
+      setSnackTrigger(false);
+      context.addMessage('');
+    }, 10000);
+  }, [context.message]);
 
   return (
     <PlayersContext.Provider value={context}>
       {children}
-      <MessagePopup message={'test'} />
+      <MessagePopup message={context.message} trigger={snackTrigger} />
     </PlayersContext.Provider>
   );
 };

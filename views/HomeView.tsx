@@ -8,10 +8,6 @@ interface Props {
 }
 
 const HomeView: React.FC<Props> = ({navigation}) => {
-  const handlePress = () => {
-    console.log('Button pressed');
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.playersContainer}>

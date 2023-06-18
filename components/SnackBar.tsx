@@ -2,7 +2,7 @@ import React, {FC, useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 
 interface SnackBarProps {
-  message: string;
+  message: string | null;
   duration?: number;
   trigger?: boolean;
 }

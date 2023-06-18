@@ -15,7 +15,6 @@ const SelectTrack: React.FunctionComponent<SelectTrackComponentProps> = ({
   const TrackList = Object.keys(TrackData).map(track => {
     return {title: track, onPress: () => setIsVisible(false)};
   });
-  console.log(TrackList);
   const list = [
     ...TrackList,
     {
@@ -33,6 +32,7 @@ const SelectTrack: React.FunctionComponent<SelectTrackComponentProps> = ({
         title="Select track"
         onPress={() => setIsVisible(true)}
         buttonStyle={styles.button}
+        disabled
       />
       <Button
         buttonStyle={styles.button}
