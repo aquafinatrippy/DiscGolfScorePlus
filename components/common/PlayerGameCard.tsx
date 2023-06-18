@@ -1,6 +1,6 @@
-import {Button, Card} from '@rneui/themed';
+import {Card} from '@rneui/themed';
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {PlayersContext} from '../../context/PlayersContext';
 
 interface Props {
@@ -16,13 +16,21 @@ const PlayerGameCard: React.FC<Props> = ({name, score, index}) => {
     <View style={styles.scoreView}>
       <Card containerStyle={styles.card}>
         <View style={styles.content}>
-          <View>
+          <View style={styles.user_data}>
             <Text>{name}</Text>
             <Text>{score}</Text>
           </View>
           <View style={styles.buttonContainer}>
-            <Button title={'-'} onPress={() => changeScore(index, false)} />
-            <Button title={'+'} onPress={() => changeScore(index)} />
+            <TouchableOpacity
+              style={[styles.button, styles.abstractBtn]}
+              onPress={() => changeScore(index, false)}>
+              <Text style={styles.buttonText}>-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.addBtn]}
+              onPress={() => changeScore(index)}>
+              <Text style={styles.buttonText}>+</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Card>
@@ -32,24 +40,52 @@ const PlayerGameCard: React.FC<Props> = ({name, score, index}) => {
 
 const styles = StyleSheet.create({
   scoreView: {
-    width: '100%', // Set width to 100% for full width
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   card: {
-    width: '100%', // Set width to 100% for full width
+    width: '100%',
     flexDirection: 'column',
+    margin: 0,
+    padding: 0,
   },
   content: {
-    flexDirection: 'row', // Set flexDirection to 'row' to align items horizontally
-    justifyContent: 'space-between', // Add space between items
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   buttonContainer: {
-    padding: 3,
-    flexDirection: 'row', // Set flexDirection to 'row' to align buttons horizontally
+    flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10, // Adjust margin to create space between buttons and other content
+    marginLeft: 10,
+    height: '100%',
+  },
+  buttonStyle: {
+    flex: 1,
+    height: 80,
+  },
+  buttonTitleStyle: {
+    fontSize: 18,
+  },
+  addBtn: {
+    backgroundColor: '#43a047',
+  },
+  abstractBtn: {
+    backgroundColor: '#FF0000',
+    color: '#000',
+  },
+  button: {
+    height: 80,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 30,
+  },
+  user_data: {
+    padding: 10,
   },
 });
 

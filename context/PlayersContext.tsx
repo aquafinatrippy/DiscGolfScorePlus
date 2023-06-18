@@ -1,6 +1,7 @@
-import React, {useState, FC, useEffect} from 'react';
+import React, {useState, FC, useEffect, ReactNode} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {generateRandomString} from '../helpers/general';
+import MessagePopup from '../components/SnackBar';
 
 type Player = {
   id: string;
@@ -81,12 +82,17 @@ export const PlayersContext = React.createContext<Context>(
   playersContextWrapper(),
 );
 
-export const PlayersContextProvider: FC = ({children}) => {
+interface ProviderProps {
+  children: ReactNode;
+}
+
+export const PlayersContextProvider: FC<ProviderProps> = ({children}) => {
   const context = playersContextWrapper();
 
   return (
     <PlayersContext.Provider value={context}>
       {children}
+      <MessagePopup message={'test'} />
     </PlayersContext.Provider>
   );
 };

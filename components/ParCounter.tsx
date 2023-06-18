@@ -24,7 +24,11 @@ const ParCounter: React.FC<Props> = () => {
           buttonStyle={styles.button}
         />
         <Text>{par}</Text>
-        <Button title="+" buttonStyle={styles.button} />
+        <Button
+          title="+"
+          buttonStyle={styles.button}
+          onPress={() => handlePress()}
+        />
       </View>
     </View>
   );
